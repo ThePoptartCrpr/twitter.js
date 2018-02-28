@@ -1,0 +1,27 @@
+{
+  "name": "twitter.js",
+  "version": "0.0.1",
+  "description": "A node.js library for Twitter.",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThePoptartCrpr/twitter.js.git"
+  },
+  "keywords": [
+    "twitter",
+    "library",
+    "api"
+  ],
+  "author": "ThePoptartCrpr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThePoptartCrpr/twitter.js/issues"
+  },
+  "homepage": "https://github.com/ThePoptartCrpr/twitter.js#readme",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
+}
