@@ -14,10 +14,14 @@ class Twitter {
   
   postTweet(content) {
     return new Promise((resolve, reject) => {
-      console.log(typeof content);
       if (typeof content != "string") return reject(new Error("Content parameter must be a string"));
-      post(this.options, 'statuses/update', {status: content}, resolve);
-      console.log("e");
+      post(this.options, 'statuses/update', {status: content})
+        .then(response => {
+          return resolve(response.statusCode);
+        })
+        .catch(e => {
+          return reject(e);
+        })
     }).catch(e => {
       return Promise.reject(e);
     })
