@@ -4,7 +4,8 @@
   "description": "A node.js library for Twitter.",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "lint": "eslint src *.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "homepage": "https://github.com/ThePoptartCrpr/twitter.js#readme",
   "dependencies": {
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2"
   }
 }
