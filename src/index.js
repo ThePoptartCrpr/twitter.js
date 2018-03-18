@@ -1,5 +1,6 @@
+const api = require('./util/api.js');
 const { post } = require('./util/api.js');
-const Tweet = require('./structures/Tweet.js');
+const { Tweet } = require('./util/structures.js');
 
 const baseOptions = {
   consumer_key: null,
