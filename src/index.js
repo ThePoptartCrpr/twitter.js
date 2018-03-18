@@ -1,4 +1,5 @@
 const { post } = require('./util/api.js');
+const Tweet = require('./structures/Tweet.js');
 
 const baseOptions = {
   consumer_key: null,
@@ -17,7 +18,10 @@ class Twitter {
       if (typeof content != "string") return reject(new Error("Content parameter must be a string"));
       post(this.options, 'statuses/update', {status: content})
         .then(response => {
-          return resolve(response.statusCode);
+          let body = JSON.parse(response.body);
+          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
+          let tweet = new Tweet(response.body);
+          return resolve(tweet);
         })
         .catch(e => {
           return reject(e);
