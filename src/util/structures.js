@@ -1,3 +1,4 @@
 module.exports = {
-  Tweet: require('../structures/Tweet.js')
+  Tweet: require('../structures/Tweet.js'),
+  User: require('../structures/User.js'),
 }

@@ -2,9 +2,11 @@ const { post } = require('../util/api.js');
 
 class Tweet {
   constructor(auth, data) {
-    console.log(data);
     this.content = data.text;
     this.id = data.id_str;
+    const { User } = require('../util/structures.js');
+    let author = new User(data.user);
+    this.author = author;
     
     this.auth = auth;
   }

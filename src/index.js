@@ -22,8 +22,7 @@ class Twitter {
         .then(response => {
           let body = JSON.parse(response.body);
           if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
-          let tweet = new Tweet(this.options, body);
-          return resolve(tweet);
+          return resolve(new Tweet(this.options, body));
         })
         .catch(e => {
           return reject(e);
