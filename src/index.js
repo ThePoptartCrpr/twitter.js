@@ -12,16 +12,17 @@ const baseOptions = {
 class Twitter {
   constructor(options) {
     this.options = Object.assign(baseOptions, options);
+    this.api = api;
   }
   
   postTweet(content) {
     return new Promise((resolve, reject) => {
-      if (typeof content != "string") return reject(new Error("Content parameter must be a string"));
+      if (typeof content != 'string') return reject(new Error('Content parameter must be a string'));
       post(this.options, 'statuses/update', {status: content})
         .then(response => {
           let body = JSON.parse(response.body);
           if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
-          let tweet = new Tweet(response.body);
+          let tweet = new Tweet(this.options, body);
           return resolve(tweet);
         })
         .catch(e => {
@@ -31,6 +32,7 @@ class Twitter {
       return Promise.reject(e);
     })
   }
+  
 }
 
 module.exports = Twitter;
