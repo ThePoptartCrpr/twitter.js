@@ -1,3 +1,3 @@
 module.exports = {
-  Tweet: require('../structures/Tweet.js');
+  Tweet: require('../structures/Tweet.js')
 }

@@ -11,6 +11,6 @@ exports.post = (auth, url, params) => {
       resolve(response);
     })
   }).catch(e => {
-    return Promise.reject(e);
+    return reject(e);
   })
 }
