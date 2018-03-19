@@ -11,7 +11,7 @@ class Tweet {
   
   retweet() {
     return new Promise((resolve, reject) => {
-      post(this.auth, `statuses/retweet/${this.id}`, {})
+      post(this.auth, `statuses/retweet/${this.id}`)
         .then(response => {
           let body = JSON.parse(response.body);
           if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
@@ -25,7 +25,7 @@ class Tweet {
   
   unretweet() {
     return new Promise((resolve, reject) => {
-      post(this.auth, `statuses/unretweet/${this.id}`, {})
+      post(this.auth, `statuses/unretweet/${this.id}`)
         .then(response => {
           let body = JSON.parse(response.body);
           if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
@@ -67,7 +67,7 @@ class Tweet {
   
   delete() {
     return new Promise((resolve, reject) => {
-      post(this.auth, `statuses/destroy/${this.id}`, {})
+      post(this.auth, `statuses/destroy/${this.id}`)
         .then(response => {
           let body = JSON.parse(response.body);
           if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
