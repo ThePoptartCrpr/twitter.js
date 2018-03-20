@@ -1,6 +1,5 @@
 class User {
   constructor(data) {
-    console.log('e');
     this.id = data.id_str;
     this.name = data.name;
     this.username = data.screen_name;
