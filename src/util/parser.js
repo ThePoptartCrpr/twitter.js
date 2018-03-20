@@ -18,15 +18,10 @@ class Parser {
       this.buffer = this.buffer.slice(index + endLength);
       if (json.length > 0) {
         try {
-          // json = JSON.stringify(json);
           json = JSON.parse(json);
-          // console.log("parser", json, "\n", typeof json);
           callback(json);
         }
         catch (error) {
-          // console.log(`Buffer: ${this.buffer}\n\n\n JSON: ${json}`);
-          // console.log(JSON.stringify(json));
-          // console.log(JSON.stringify(json));
           console.error(error);
         }
       }

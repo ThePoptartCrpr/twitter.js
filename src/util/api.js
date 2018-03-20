@@ -28,7 +28,6 @@ exports.stream = (auth, url, params, callback) => {
     request.post({url: 'https://stream.twitter.com/1.1/' + url + '.json', oauth: auth, form: params})
       .on('data', response => {
         parser.receive(response, data => {
-          // console.log("api", typeof data);
           callback(data);
         });
       })
@@ -36,6 +35,6 @@ exports.stream = (auth, url, params, callback) => {
         console.log(error);
       })
       .on('end', () => {
-        console.log('end');
+        // console.log('end');
       })
 }

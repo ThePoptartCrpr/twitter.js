@@ -1,5 +1,5 @@
 const api = require('./util/api.js');
-const { stream, post } = require('./util/api.js');
+const { stream, get, post } = require('./util/api.js');
 const { Tweet } = require('./util/structures.js');
 
 const EventEmitter = require('events');
@@ -10,6 +10,8 @@ const baseOptions = {
   token: null,
   token_secret: null,
   tracking: false,
+  mentionEvent: false,
+  currentUsername: null,
 }
 
 class Twitter extends EventEmitter {
@@ -23,6 +25,16 @@ class Twitter extends EventEmitter {
       token: this.options.token,
       token_secret: this.options.token_secret,
     }
+    
+    get(this.auth, 'account/verify_credentials')
+      .then(response => {
+        let body = JSON.parse(response.body);
+        if (body.errors) throw(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`);
+        this.options.currentUsername = body.screen_name;
+      })
+      .catch(error => {
+        console.error(error);
+      })
     
     this.api = api;
     
@@ -48,22 +60,9 @@ class Twitter extends EventEmitter {
   
   startMentionEvent() {
     stream(this.auth, 'statuses/filter', {track: this.options.tracking}, response => {
-      // let data = '';
-      // data += response.toString();
-      // let json = JSON.parse(data);
-      // console.log("hello!", typeof response);
       this.emit('tweet', new Tweet(this.auth, response));
     })
   }
-  
-  /*onMention(callback) {
-    stream(this.auth, 'statuses/filter', {track: '@vervezmusic'}, response => {
-      let data = '';
-      data += response.toString();
-      // console.log(JSON.parse(data));
-      callback(JSON.parse(data));
-    });
-  }*/
   
 }
 
