@@ -5,8 +5,8 @@ class Tweet {
     this.content = data.text;
     this.id = data.id_str;
     const { User } = require('../util/structures.js');
-    let author = new User(data.user);
-    this.author = author;
+    this.user = new User(data.user);
+    this.author = this.user;
     
     this.auth = auth;
   }
