@@ -1,5 +1,9 @@
 # Files
 package-lock.json
+.eslintrc.json
+.travis.yml
+.gitignore
+.gitattributes
 
 # Directories
 testing

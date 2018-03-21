@@ -69,8 +69,8 @@ class Tweet {
   
   reply(message) {
     return new Promise((resolve, reject) => {
-      if (typeof message != 'string') reject(new Error('The message to reply with must be a string!'));
-      // message = `@${this.author.username} ${message}`;
+      // if (typeof message != 'string') reject(new Error('The message to reply with must be a string!'));
+      message = `@${this.user.username} ${message}`;
       post(this.auth, `statuses/update`, {status: message, in_reply_to_status_id: this.id})
         .then(response => {
           let body = JSON.parse(response.body);

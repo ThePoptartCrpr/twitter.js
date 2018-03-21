@@ -1,6 +1,6 @@
 const api = require('./util/api.js');
 const { stream, get, post } = require('./util/api.js');
-const { Tweet } = require('./util/structures.js');
+const { User, Tweet } = require('./util/structures.js');
 
 const EventEmitter = require('events');
 
@@ -26,11 +26,14 @@ class Twitter extends EventEmitter {
       token_secret: this.options.token_secret,
     }
     
+    this.user = null;
+    
     get(this.auth, 'account/verify_credentials')
       .then(response => {
         let body = JSON.parse(response.body);
         if (body.errors) throw(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`);
         this.options.currentUsername = body.screen_name;
+        this.user = new User(body);
       })
       .catch(error => {
         console.error(error);

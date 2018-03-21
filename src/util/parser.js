@@ -1,5 +1,5 @@
 // Credit to the twitter module for this one. The twitter api is utter hell to parse
-// Original source: https://github.com/desmondmorris/node-twitter/blob/master/lib/parser.js
+// Adapted from https://github.com/desmondmorris/node-twitter/blob/master/lib/parser.js
 
 class Parser {
   constructor() {
@@ -10,12 +10,9 @@ class Parser {
     this.buffer += buffer.toString('utf8');
     let index, json;
     
-    let end = '\r\n';
-    let endLength = 2;
-    
-    while ((index = this.buffer.indexOf(end)) > -1) {
+    while ((index = this.buffer.indexOf('\r\n')) > -1) {
       json = this.buffer.slice(0, index);
-      this.buffer = this.buffer.slice(index + endLength);
+      this.buffer = this.buffer.slice(index + 2);
       if (json.length > 0) {
         try {
           json = JSON.parse(json);
