@@ -7,6 +7,11 @@
 # twitter.js
 A powerful, object-oriented library for easy interaction with the Twitter API.
 
+
+## Discord
+Have a question? Got an issue? Join our Discord server [here](https://discord.gg/Ypmhtc) for support and all the latest announcements related to twitter.js and our sister project, jscord.
+
+
 ## Usage
 The first step is, of course, to make a Twitter application.
 
