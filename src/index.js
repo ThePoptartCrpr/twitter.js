@@ -30,10 +30,8 @@ class Twitter extends EventEmitter {
     
     get(this.auth, 'account/verify_credentials')
       .then(response => {
-        let body = JSON.parse(response.body);
-        if (body.errors) throw(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`);
-        this.options.currentUsername = body.screen_name;
-        this.user = new User(body);
+        this.options.currentUsername = response.screen_name;
+        this.user = new User(response);
       })
       .catch(error => {
         console.error(error);
@@ -49,9 +47,7 @@ class Twitter extends EventEmitter {
       if (typeof content != 'string') return reject(new Error('Content parameter must be a string'));
       post(this.auth, 'statuses/update', {status: content})
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
-          return resolve(new Tweet(this.auth, body));
+          return resolve(new Tweet(this.auth, response));
         })
         .catch(e => {
           return reject(e);

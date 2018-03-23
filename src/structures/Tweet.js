@@ -15,8 +15,6 @@ class Tweet {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/retweet/${this.id}`)
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
           return resolve();
         })
         .catch(e => {
@@ -29,8 +27,6 @@ class Tweet {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/unretweet/${this.id}`)
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
           return resolve();
         })
         .catch(e => {
@@ -43,8 +39,6 @@ class Tweet {
     return new Promise((resolve, reject) => {
       post(this.auth, `favorites/create`, {id: this.id})
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
           return resolve();
         })
         .catch(e => {
@@ -57,8 +51,6 @@ class Tweet {
     return new Promise((resolve, reject) => {
       post(this.auth, `favorites/destroy`, {id: this.id})
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
           return resolve();
         })
         .catch(e => {
@@ -73,9 +65,7 @@ class Tweet {
       message = `@${this.user.username} ${message}`;
       post(this.auth, `statuses/update`, {status: message, in_reply_to_status_id: this.id})
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
-          return resolve(new Tweet(this.auth, body));
+          return resolve(new Tweet(this.auth, response));
         })
         .catch(e => {
           return reject(e);
@@ -87,8 +77,6 @@ class Tweet {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/destroy/${this.id}`)
         .then(response => {
-          let body = JSON.parse(response.body);
-          if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
           return resolve();
         })
         .catch(e => {

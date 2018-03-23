@@ -6,7 +6,9 @@ exports.get = (auth, url, params) => {
   return new Promise((resolve, reject) => {
     request.get({url: 'https://api.twitter.com/1.1/' + url + '.json', oauth: auth, form: params}, function(error, response, body) {
       if (error) return reject(new Error(error));
-      resolve(response);
+      body = JSON.parse(response.body);
+      if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
+      resolve(body);
     })
   }).catch(e => {
     return reject(e);
@@ -17,7 +19,9 @@ exports.post = (auth, url, params) => {
   return new Promise((resolve, reject) => {
     request.post({url: 'https://api.twitter.com/1.1/' + url + '.json', oauth: auth, form: params}, function(error, response, body) {
       if (error) return reject(new Error(error));
-      resolve(response);
+      body = JSON.parse(response.body);
+      if (response.statusCode != 200 && body.errors) return reject(new Error(`API returned error ${body.errors[0].code}: ${body.errors[0].message}`));
+      resolve(body);
     })
   }).catch(e => {
     return reject(e);
