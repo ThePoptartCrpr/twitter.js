@@ -15,6 +15,11 @@ A powerful, object-oriented library for easy interaction with the Twitter API.
 Have a question? Got an issue? Join our Discord server [here](https://discord.gg/Ypmhtc) for support and all the latest announcements related to twitter.js and our sister project, jscord.
 
 
+## Links
+* [Documentation](https://jscord.js.org/#/docs/twitter.js/master/general/welcome)
+* [GitHub Repository](https://github.com/ThePoptartCrpr/twitter.js)
+
+
 ## Usage
 First, install twitter.js from the command line:
 
@@ -53,4 +58,4 @@ client.postTweet("Hello there!")
 
 Or whatever floats your boat.
 
-Full documentation will be coming soon.
+Work-in-progress documentation can be found <a href="https://jscord.js.org/#/docs/twitter.js/master/general/welcome">here</a>.
