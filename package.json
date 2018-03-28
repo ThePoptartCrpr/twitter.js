@@ -1,5 +1,5 @@
 {
-  "name": "twitter.js",
+  "name": "js-twitter",
   "version": "0.0.1",
   "description": "A node.js library for Twitter.",
   "main": "./src/index.js",

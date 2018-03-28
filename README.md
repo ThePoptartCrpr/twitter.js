@@ -13,12 +13,18 @@ Have a question? Got an issue? Join our Discord server [here](https://discord.gg
 
 
 ## Usage
-The first step is, of course, to make a Twitter application.
+First, install twitter.js from the command line:
+
+```
+npm i js-twitter --save
+```
+
+From there, the first step is, of course, to make a Twitter application.
 
 Once you have your application's credentials, require twitter.js and create a client object with the following:
 
 ```js
-const Twitter = require('twitter.js');
+const Twitter = require('js-twitter');
 let client = new Twitter({
   consumer_key: "Your application's consumer key here",
   consumer_secret: "Your application's consumer secret here",
