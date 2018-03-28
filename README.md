@@ -1,6 +1,9 @@
 <div align="center">
   <p>
     <a href="https://discord.gg/Ypmhtc"><img src="https://discordapp.com/api/guilds/412772653481459714/embed.png" alt="Discord server" /></a>
+    <br />
+    <a href="https://www.npmjs.com/package/jscord"><img src="https://img.shields.io/npm/v/js-twitter.svg?maxAge=3600" alt="NPM version" /></a>
+<a href="https://www.npmjs.com/package/jscord"><img src="https://img.shields.io/npm/dt/js-twitter.svg?maxAge=3600" alt="NPM downloads" /></a>
   </p>
 </div>
 
