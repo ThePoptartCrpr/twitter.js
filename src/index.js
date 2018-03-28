@@ -14,7 +14,13 @@ const baseOptions = {
   currentUsername: null,
 }
 
+/**
+ * The base client you'll be using.
+ */
 class Twitter extends EventEmitter {
+  /**
+   * @param {object} options An object containing the options for the client
+   */
   constructor(options) {
     super();
     
@@ -42,6 +48,11 @@ class Twitter extends EventEmitter {
     if (!this.options.tracking == false) this.startMentionEvent();
   }
   
+  /**
+   * Post a generic tweet
+   * @param  {string} content The text of the tweet to be posted
+   * @return {Promise<Tweet>}         An object containing the tweet that was just tweeted
+   */
   postTweet(content) {
     return new Promise((resolve, reject) => {
       if (typeof content != 'string') return reject(new Error('Content parameter must be a string'));

@@ -8,3 +8,5 @@ package-lock.json
 # Directories
 testing
 node_modules
+docgen
+docs

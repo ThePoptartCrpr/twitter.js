@@ -2,15 +2,35 @@ const { post } = require('../util/api.js');
 
 class Tweet {
   constructor(auth, data) {
+    /**
+     * The raw text of the tweet
+     * @type {string}
+     */
     this.content = data.text;
+    /**
+     * The tweet's ID
+     * @type {string}
+     */
     this.id = data.id_str;
     const { User } = require('../util/structures.js');
+    /**
+     * The author of the tweet
+     * @type {User}
+     */
     this.user = new User(data.user);
+    /**
+     * An alias for {@link Tweet#user}
+     * @type {User}
+     */
     this.author = this.user;
     
     this.auth = auth;
   }
   
+  /**
+   * Retweets the tweet
+   * @return {void}
+   */
   retweet() {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/retweet/${this.id}`)
@@ -23,6 +43,10 @@ class Tweet {
     })
   }
   
+  /**
+   * Unretweets the tweet
+   * @return {void} 
+   */
   unretweet() {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/unretweet/${this.id}`)
@@ -35,6 +59,10 @@ class Tweet {
     })
   }
   
+  /**
+   * Likes the tweet
+   * @return {void}
+   */
   like() {
     return new Promise((resolve, reject) => {
       post(this.auth, `favorites/create`, {id: this.id})
@@ -47,6 +75,10 @@ class Tweet {
     })
   }
   
+  /**
+   * Unlikes the tweet
+   * @return {void} 
+   */
   unlike() {
     return new Promise((resolve, reject) => {
       post(this.auth, `favorites/destroy`, {id: this.id})
@@ -59,6 +91,11 @@ class Tweet {
     })
   }
   
+  /**
+   * Reply to the tweet
+   * @param  {string} message The message to reply with
+   * @return {Promise<Tweet>}         The tweet that was just tweeted
+   */
   reply(message) {
     return new Promise((resolve, reject) => {
       // if (typeof message != 'string') reject(new Error('The message to reply with must be a string!'));
@@ -73,6 +110,10 @@ class Tweet {
     })
   }
   
+  /**
+   * Deletes the tweet
+   * @return {void} 
+   */
   delete() {
     return new Promise((resolve, reject) => {
       post(this.auth, `statuses/destroy/${this.id}`)
