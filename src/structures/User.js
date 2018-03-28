@@ -1,3 +1,6 @@
+/**
+ * A Twitter user
+ */
 class User {
   constructor(data) {
     /**

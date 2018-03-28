@@ -1,5 +1,8 @@
 const { post } = require('../util/api.js');
 
+/**
+ * A tweet
+ */
 class Tweet {
   constructor(auth, data) {
     /**
