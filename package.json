@@ -1,6 +1,6 @@
 {
   "name": "js-twitter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A node.js library for Twitter.",
   "main": "./src/index.js",
   "scripts": {
